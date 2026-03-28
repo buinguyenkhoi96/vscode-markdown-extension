@@ -1,5 +1,4 @@
 import * as crypto from 'node:crypto';
-import * as path from 'node:path';
 import * as vscode from 'vscode';
 import {
   createEditorWebviewHtml,
@@ -29,8 +28,9 @@ export class MarkdownLiveEditorProvider implements vscode.CustomTextEditorProvid
   public async resolveCustomTextEditor(
     document: vscode.TextDocument,
     webviewPanel: vscode.WebviewPanel,
-    _token: vscode.CancellationToken,
+    token: vscode.CancellationToken,
   ): Promise<void> {
+    void token;
     if (!isSupportedMarkdownDocument(document.languageId, document.uri.scheme)) {
       throw new Error('Markdown Live Preview Editor only supports markdown files.');
     }
@@ -45,7 +45,7 @@ export class MarkdownLiveEditorProvider implements vscode.CustomTextEditorProvid
 
     webviewPanel.webview.html = this.createWebviewHtml(webviewPanel.webview);
 
-    const updateWebview = (): Thenable<boolean> =>
+    const updateWebview = async (): Promise<boolean> =>
       webviewPanel.webview.postMessage({
         type: 'update',
         text: document.getText(),
