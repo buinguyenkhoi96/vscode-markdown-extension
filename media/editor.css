@@ -1,0 +1,96 @@
+:root {
+  --editor-background: var(--vscode-editor-background);
+  --editor-foreground: var(--vscode-editor-foreground);
+  --editor-border: var(--vscode-panel-border);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: var(--editor-foreground);
+  background: var(--editor-background);
+  font-family: var(--vscode-font-family);
+}
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr);
+  width: 100%;
+  height: 100vh;
+}
+
+.editor {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-right: 1px solid var(--editor-border);
+  resize: none;
+  padding: 1rem;
+  outline: none;
+  color: inherit;
+  background: transparent;
+  font-family: var(--vscode-editor-font-family);
+  font-size: var(--vscode-editor-font-size);
+  line-height: 1.5;
+}
+
+.preview {
+  overflow-y: auto;
+  padding: 1rem 1.25rem;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.preview h1,
+.preview h2,
+.preview h3,
+.preview h4,
+.preview h5,
+.preview h6 {
+  margin-top: 1.4em;
+  margin-bottom: 0.6em;
+}
+
+.preview p,
+.preview ul,
+.preview ol,
+.preview pre,
+.preview blockquote,
+.preview table {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+.preview pre {
+  padding: 0.75rem;
+  border-radius: 4px;
+  overflow: auto;
+  background: var(--vscode-textCodeBlock-background);
+}
+
+.preview code {
+  font-family: var(--vscode-editor-font-family);
+}
+
+.render-error,
+.mermaid-error {
+  color: var(--vscode-errorForeground);
+}
+
+@media (max-width: 900px) {
+  .editor-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .editor {
+    border-right: 0;
+    border-bottom: 1px solid var(--editor-border);
+  }
+}

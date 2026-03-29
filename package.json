@@ -1,0 +1,87 @@
+{
+  "name": "markdown-preview-editing-mermaid",
+  "version": "0.0.1",
+  "description": "Editable Markdown preview custom editor with Mermaid support",
+  "main": "./out/extension.js",
+  "scripts": {
+    "test": "mocha \"out/test/**/*.test.js\" --reporter spec",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src test --ext .ts",
+    "pretest": "npm run compile && npm run lint",
+    "vscode:prepublish": "npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buinguyenkhoi96/vscode-markdown-extension.git"
+  },
+  "keywords": [
+    "vscode",
+    "extension",
+    "markdown",
+    "mermaid",
+    "preview"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buinguyenkhoi96/vscode-markdown-extension/issues"
+  },
+  "homepage": "https://github.com/buinguyenkhoi96/vscode-markdown-extension#readme",
+  "displayName": "Markdown Preview Editing Mermaid",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.88.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "files": [
+    "out",
+    "media",
+    "package.json",
+    "README.md"
+  ],
+  "activationEvents": [
+    "onCustomEditor:markdownPreviewEditing.editor",
+    "onCommand:markdownPreviewEditing.openEditor"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "markdownPreviewEditing.openEditor",
+        "title": "Open Markdown Live Preview Editor"
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "markdownPreviewEditing.editor",
+        "displayName": "Markdown Live Preview Editor",
+        "selector": [
+          {
+            "filenamePattern": "*.md"
+          }
+        ],
+        "priority": "default"
+      }
+    ]
+  },
+  "dependencies": {
+    "dompurify": "^3.3.3",
+    "marked": "^17.0.5",
+    "mermaid": "^11.13.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/chai": "^5.2.3",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^25.5.0",
+    "@types/vscode": "^1.110.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
+    "chai": "^6.2.2",
+    "eslint": "^10.1.0",
+    "mocha": "^11.7.5",
+    "typescript": "^5.9.3"
+  }
+}
