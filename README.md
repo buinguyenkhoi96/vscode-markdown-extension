@@ -52,6 +52,30 @@ npm run lint
 npm test
 ```
 
+## CI/CD
+
+This repository includes GitHub Actions workflows for continuous integration and extension publishing:
+
+- **CI** (`.github/workflows/ci.yml`)
+  - Runs on pushes to `main` and `cursor/**` branches, and on pull requests targeting `main`
+  - Executes:
+    - `npm ci`
+    - `npm run compile`
+    - `npm run lint`
+    - `npx mocha "out/test/**/*.test.js" --reporter spec`
+
+- **CD** (`.github/workflows/cd-publish-vscode.yml`)
+  - Runs when a tag matching `v*.*.*` is pushed (for example: `v1.2.3`)
+  - Can also be started manually from the GitHub Actions UI
+  - Publishes to Visual Studio Marketplace using:
+    - `npx @vscode/vsce@latest publish`
+
+### Required GitHub secret for publish
+
+Set the following repository secret before running the publish workflow:
+
+- `VSCE_PAT`: Personal Access Token used by `vsce` to publish extensions
+
 ## Project structure
 
 - `src/extension.ts` - extension activation + command wiring
